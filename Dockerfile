@@ -1,11 +1,12 @@
-FROM runpod/python:3.10-uv
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y ffmpeg git
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip git ffmpeg && \
+    apt-get clean
 
 COPY . .
 
-RUN pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 torchaudio==2.1.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
-RUN pip install -r requirements.txt
-RUN pip install -r wan21/requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
