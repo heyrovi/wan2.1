@@ -7,7 +7,7 @@ def handler(event):
     output_dir = f"/tmp/{uuid.uuid4()}"
     os.makedirs(output_dir, exist_ok=True)
 
-    os.chdir("/app/wan21")
+    os.chdir("/app")
 
     cmd = [
         "python", "scripts/inference.py",
